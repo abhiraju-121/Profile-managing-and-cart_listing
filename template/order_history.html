@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 50px auto; padding: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; }
+        h1 { text-align: center; font-size: 2.5rem; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        th, td { text-align: left; padding: 10px; border: 1px solid #ddd; }
+        th { background-color: #f4f4f4; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .remove-btn { background-color: #ff4d4d; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer; text-decoration: none; }
+        .remove-btn:hover { background-color: #e60000; }
+        .back-home { display: block; text-align: center; margin-top: 30px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; text-decoration: none; }
+        .back-home:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Order History</h1>
+
+    {% if grouped_orders %}
+        {% for date, orders in grouped_orders.items %}
+            <h2>{{ date }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Items</th>
+                        <th>Total Price</th>
+                        <th>Products</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.order_id }}</td>
+                            <td>{{ order.customer_name }}</td>
+                            <td>{{ order.item_count }}</td>
+                            <td>${{ order.total_price }}</td>
+                            <td>
+                                <ul>
+                                    {% for item in order.items %}
+                                        <li>{{ item.product.name }} (Quantity: {{ item.quantity }})</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>
+                                <a href="{% url 'delete_history' order.order_id %}" class="remove-btn" onclick="return confirm('Are you sure you want to remove this order?');">Remove</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    {% else %}
+        <p>No orders found.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}" class="back-home">Back to Home</a>
+</div>
+
+</body>
+</html>

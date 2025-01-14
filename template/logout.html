@@ -1,0 +1,83 @@
+
+    <h2>Logged Out</h2>
+    <p>You have been logged out successfully.</p>
+    <p><a href="{% url 'login' %}">Login again</a></p>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Logged Out</title>
+        <style>
+            /* General styling */
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f4f9;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }
+    
+            /* Navbar styling */
+            nav {
+                background-color: #4CAF50;
+                padding: 15px;
+                text-align: center;
+            }
+    
+            nav a {
+                color: white;
+                margin: 0 15px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+    
+            nav a:hover {
+                text-decoration: underline;
+            }
+    
+            /* Container for page content */
+            .container {
+                max-width: 600px;
+                margin: 40px auto;
+                padding: 30px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+    
+            h2 {
+                color: #4CAF50;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+    
+            p {
+                text-align: center;
+                font-size: 18px;
+                margin-top: 20px;
+            }
+    
+            p a {
+                color: #4CAF50;
+                font-weight: bold;
+                text-decoration: none;
+            }
+    
+            p a:hover {
+                text-decoration: underline;
+            }
+    
+        </style>
+    </head>
+    <body>
+    
+        <div class="container">
+            <h2>Logged Out</h2>
+            <p>You have been logged out successfully.</p>
+            <p><a href="{% url 'login' %}">Login again</a></p>
+        </div>
+    </body>
+    </html>
+    

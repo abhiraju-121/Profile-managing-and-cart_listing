@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Product Image */
+        .product-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: fill;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Product Details */
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        p strong {
+            font-weight: bold;
+        }
+
+        /* Back Button */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s;
+        }
+
+        a:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+
+        /* Cart Icon Styles */
+        .cart-icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cart Icon with Badge -->
+    <a href="{% url 'cart' %}" class="cart-icon">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="badge">{{ cart.total_items }}</span>
+    </a>
+
+    <div class="container">
+        <h1>{{ products.name }}</h1>
+        <img class="product-image" src="{{ products.image.url }}" alt="{{ products.name }}">
+        <p><strong>Price:</strong> ${{ products.price }}</p>
+        <p><strong>Description:</strong> {{ products.desc }}</p>
+        <a href="{% url 'product' %}">Back to Products</a>
+        <a href="{% url 'purchase' products.id %}">Add-To-Cart</a>
+    </div>
+    <a href="{% url 'home' %}">Home</a>
+    <!-- Include Font Awesome for Cart Icon -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

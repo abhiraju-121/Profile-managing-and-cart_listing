@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: #4CAF50;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container for page content */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-details {
+            margin-bottom: 20px;
+        }
+
+        .profile-details p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .profile-details .label {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .profile-actions {
+            text-align: center;
+        }
+
+        .profile-actions a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        .profile-actions a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (optional) -->
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Logout</a>
+    </nav>
+
+    <!-- Content Container -->
+    <div class="container">
+        <h2>User Profile</h2>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <p><span class="label">Username:</span> {{ request.user.username }}</p>
+            <p><span class="label">First Name:</span> {{ request.user.first_name }}</p>
+            <p><span class="label">Last Name:</span> {{ request.user.last_name }}</p>
+            <p><span class="label">Email:</span> {{ request.user.email }}</p>
+        </div>
+
+        <!-- Profile Actions (Edit, Deactivate, etc.) -->
+        <div class="profile-actions">
+            <a href="{% url 'update_profile' %}">Update Profile</a>
+            <a href="{% url 'deactivate_account' %}">Deactivate Account</a>
+        </div>
+    </div>
+</body>
+</html>
